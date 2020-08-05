@@ -25,6 +25,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class QuizController {
 
     @Autowired
