@@ -61,14 +61,14 @@ public class QuizController {
     }
 
     @PostMapping(path = "/api/quizzes/{id}/solve")
-    public Feedback checkAnswer(@RequestBody Answer answer, @PathVariable Long id, Principal principal) {
+    public ResponseEntity<Feedback> checkAnswer(@RequestBody Answer answer, @PathVariable Long id, Principal principal) {
         checkArrayBounds(id);
 
         if (questionService.getQuestionById(id).isCorrect(answer.getAnswerOptions())) {
             saveCompletedAt(id, principal);
-            return Feedback.CORRECT_ANSWER;
+            return new ResponseEntity<>(Feedback.CORRECT_ANSWER, HttpStatus.OK);
         } else {
-            return Feedback.WRONG_ANSWER;
+            return new ResponseEntity<>(Feedback.WRONG_ANSWER, HttpStatus.NOT_FOUND);
         }
 
     }

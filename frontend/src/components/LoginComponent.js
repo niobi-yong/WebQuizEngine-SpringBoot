@@ -4,17 +4,9 @@ import { useHistory } from 'react-router-dom';
 
 const LoginComponent = () => {
     const history = useHistory();
-    const[ username, setUsername ] = useState('test@mail.com');
-    const[ password, setPassword ] = useState('password');
-    const[ hasLoginFailed, setHasLoginFailed ] = useState(false);
-
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
-    };
-
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    };
+    const[ username, setUsername ] = useState('');
+    const[ password, setPassword ] = useState('');
+    const[ hasLoginFailed, setHasLoginFailed ] = useState(false); 
 
     const loginClicked = (event) => {
         event.preventDefault();
@@ -28,8 +20,17 @@ const LoginComponent = () => {
         .catch(() => setHasLoginFailed(true))
     };
 
-    return (
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
+        setHasLoginFailed(false);
+    };
 
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+        setHasLoginFailed(false);
+    };
+
+    return (
         <div>
             <div className="container mt-3">
                 <h1 className="display-4">Web Quiz</h1>
@@ -41,7 +42,7 @@ const LoginComponent = () => {
                         <strong>Sign in</strong>
                     </h4>
                     <form onSubmit={loginClicked}>
-                    {hasLoginFailed && <p class="text-danger text-center">Your credentials are invalid, try again.</p>}
+                    {hasLoginFailed && <p className="text-danger text-center">Your credentials are invalid, try again.</p>}
                     <div className="form-group">
                         <label>Email</label>
                         <input value={username} onChange={handleUsernameChange} className="form-control" type="email" name="username"/>

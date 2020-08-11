@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import registrationService from '../services/RegistrationService'
+import registrationService from '../services/RegistrationService';
+import { useHistory } from 'react-router-dom';
 
 const RegistrationComponent = () => {
+    const history = useHistory();
     const[ email, setEmail ] = useState('');
     const[ password, setPassword ] = useState('');
+    const[ registerFail, setRegisterFail] = useState(false);
 
     const addUser = (event) => {
         event.preventDefault();
@@ -18,17 +21,21 @@ const RegistrationComponent = () => {
             .then(() => {
                 setEmail('');
                 setPassword('');
-        });
+                history.push(`/login`);
+            })
+            .catch(() => setRegisterFail(true));
     };
 
     
     
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
+        setRegisterFail(false);
     };
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
+        setRegisterFail(false);
     };
 
     return (
@@ -43,6 +50,7 @@ const RegistrationComponent = () => {
                     <h4 className="card-title mb-4 mt-1">
                         <strong>Sign up</strong>
                     </h4>
+                    {registerFail && <p className="text-danger text-center">Invalid data</p>}
                     <form onSubmit={addUser}>
                         <div className="form-group">
                             <label>Email</label>
