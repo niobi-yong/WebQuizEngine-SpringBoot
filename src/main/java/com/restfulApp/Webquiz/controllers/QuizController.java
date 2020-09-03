@@ -1,12 +1,13 @@
 package com.restfulApp.Webquiz.controllers;
 
-import com.restfulApp.Webquiz.*;
 import com.restfulApp.Webquiz.models.CompletedQuestion;
 import com.restfulApp.Webquiz.models.Question;
 import com.restfulApp.Webquiz.models.User;
 import com.restfulApp.Webquiz.repositories.CompletedQuestionRepository;
 import com.restfulApp.Webquiz.services.QuestionService;
 import com.restfulApp.Webquiz.services.UserService;
+import com.restfulApp.Webquiz.utils.Answer;
+import com.restfulApp.Webquiz.utils.Feedback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -56,7 +57,8 @@ public class QuizController {
 
     @GetMapping(path = "/api/quizzes/completed")
     public ResponseEntity<Page<CompletedQuestion>> getCompletedQuestionForUser(Principal principal, @RequestParam Optional<Integer> page) {
-        Page<CompletedQuestion> completedQuestions = completedQuestionRepository.findByUserId(userService.findUser(principal.getName()).getId(), PageRequest.of(page.orElse(0), 10, Sort.by(Sort.Direction.DESC, "completedAt")));
+        Page<CompletedQuestion> completedQuestions = completedQuestionRepository
+                .findByUserId(userService.findUser(principal.getName()).getId(), PageRequest.of(page.orElse(0), 10, Sort.by(Sort.Direction.DESC, "completedAt")));
         return new ResponseEntity<>(completedQuestions, HttpStatus.OK);
     }
 

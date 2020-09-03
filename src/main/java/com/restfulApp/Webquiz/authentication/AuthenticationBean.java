@@ -1,4 +1,4 @@
-package com.restfulApp.Webquiz;
+package com.restfulApp.Webquiz.authentication;
 
 public class AuthenticationBean {
 

@@ -24,15 +24,15 @@ const FetchQuizDetail = ({ match }) => {
         answer: answer
     }
     
-    QuizDetailService
-      .createAnswer(match.params.id, newAnswer)
-      .then(() => {
-        setCorrectAnswer(true);
-      })
-      .catch(response => {
-        setWrongAnswer(true);
-        console.log('error', response)
-      });
+  QuizDetailService
+    .createAnswer(match.params.id, newAnswer)
+    .then(() => {
+      setCorrectAnswer(true);
+    })
+    .catch(response => {
+      setWrongAnswer(true);
+      console.log('error', response)
+    });
   };
 
   const handleCheckboxChange = (event) => {

@@ -1,4 +1,4 @@
-package com.restfulApp.Webquiz;
+package com.restfulApp.Webquiz.utils;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

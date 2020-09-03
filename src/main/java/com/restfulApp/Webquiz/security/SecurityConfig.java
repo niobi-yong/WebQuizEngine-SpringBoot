@@ -1,9 +1,8 @@
-package com.restfulApp.Webquiz;
+package com.restfulApp.Webquiz.security;
 
-import com.restfulApp.Webquiz.services.UserDetailsServiceImpl;
+import com.restfulApp.Webquiz.authentication.CustomAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@ComponentScan(basePackageClasses = UserDetailsServiceImpl.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired

@@ -3,7 +3,6 @@ package com.restfulApp.Webquiz.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.restfulApp.Webquiz.models.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

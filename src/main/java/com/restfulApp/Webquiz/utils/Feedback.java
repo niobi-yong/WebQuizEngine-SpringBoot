@@ -1,4 +1,4 @@
-package com.restfulApp.Webquiz;
+package com.restfulApp.Webquiz.utils;
 
 public class Feedback {
 
